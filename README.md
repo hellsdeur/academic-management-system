@@ -1,4 +1,4 @@
-# academic-management-system
+# Academic Management System
 Java project for a simple academic management system
 
 ## 1. Introduction
