@@ -66,6 +66,30 @@ public class Turma {
 		}
 	}
 	
+	public void consolidar () {
+		for (Aluno aluno: this.notas.keySet()) {
+			char conceito;
+			int media = 0;
+			for (Float nota: notas.get(aluno)) {
+				media += nota;
+			}
+			media /= this.avaliacoes;
+			if (media < 5.0) {
+				conceito = 'I';
+			}
+			else if (media >= 5.0 && media < 7.0) {
+				conceito = 'R';
+			}
+			else if (media >= 7.0 && media < 9.0) {
+				conceito = 'B';
+			}
+			else {
+				conceito = 'E';
+			}
+			aluno.consolidarNota(this.disciplina, conceito);
+		}
+	}
+	
 	public Disciplina getDisciplina () {
 		return this.disciplina;
 	}

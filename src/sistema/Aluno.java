@@ -27,5 +27,8 @@ public class Aluno extends Usuario {
 			turma.registrarTarefa(this, tarefa);
 		}
 	}
-		
+	
+	public void consolidarNota (Disciplina disciplina, Character conceito) {
+		this.historico.consolidar(disciplina, conceito);
+	}
 }
