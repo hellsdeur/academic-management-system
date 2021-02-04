@@ -31,4 +31,8 @@ public class Aluno extends Usuario {
 	public void consolidarNota (Disciplina disciplina, Character conceito) {
 		this.historico.consolidar(disciplina, conceito);
 	}
+	
+	public Historico getHistorico () {
+		return this.historico;
+	}
 }

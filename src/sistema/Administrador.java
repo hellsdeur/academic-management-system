@@ -13,22 +13,55 @@ public class Administrador extends Usuario {
 		super(nome, id);
 		professores = new ArrayList<>();
 		alunos = new ArrayList<>();
+		disciplinas = new ArrayList<>();
+		turmas = new ArrayList<>();
 	}
 	
-	public void novoProfessor (String nome) {
-		this.professores.add(new Professor(nome, this.professores.size()+1));
+	public Professor novoProfessor (String nome) {
+		Professor professor = new Professor(nome, this.professores.size()+1);
+		this.professores.add(professor);
+		return professor;
 	}
 	
-	public void novoAluno (String nome) {
-		this.alunos.add(new Aluno(nome, this.alunos.size()+1));
+	public Aluno novoAluno (String nome) {
+		Aluno aluno = new Aluno(nome, this.alunos.size()+1);
+		this.alunos.add(aluno);
+		return aluno;
 	}
 	
-	public void novaDisciplina (String nome) {
-		this.disciplinas.add(new Disciplina(nome));
+	public Disciplina novaDisciplina (String nome) {
+		Disciplina disciplina = new Disciplina(nome);
+		this.disciplinas.add(disciplina);
+		return disciplina;
 	}
 	
-	public void novaTurma (Disciplina disciplina, Professor professor, int avaliacoes) {
-		this.turmas.add(new Turma(disciplina, professor, avaliacoes));
+	public Turma novaTurma (Disciplina disciplina, Professor professor, int avaliacoes) {
+		Turma turma = new Turma(disciplina, professor, avaliacoes);
+		this.turmas.add(turma);
+		return turma;
+	}
+	
+	public String getNome () {
+		return this.getNome();
+	}
+	
+	public int getId () {
+		return this.getId();
+	}
+	
+	public List<Professor> getProfessores () {
+		return this.professores;
+	}
+	
+	public List<Aluno> getAlunos () {
+		return this.alunos;
+	}
+	
+	public List<Disciplina> getDisciplinas () {
+		return this.disciplinas;
 	}
 
+	public List<Turma> getTurmas () {
+		return this.turmas;
+	}
 }

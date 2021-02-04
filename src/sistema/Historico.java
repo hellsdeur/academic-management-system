@@ -22,4 +22,8 @@ public class Historico {
 	public Set<Disciplina> getDisciplinas () {
 		return conceitos.keySet();
 	}
+	
+	public Character getConceito(Disciplina disciplina) {
+		return conceitos.get(disciplina);
+	}
 }
