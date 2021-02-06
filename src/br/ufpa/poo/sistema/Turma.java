@@ -24,7 +24,7 @@ public class Turma {
 		this.notas = new HashMap<>();
 	}
 	
-	public void matricular (Aluno aluno) {
+	protected void matricular (Aluno aluno) {
 		if (this.alunos.contains(aluno)) {
 			throw new IllegalArgumentException("Aluno já matriculado.");
 		} else {
