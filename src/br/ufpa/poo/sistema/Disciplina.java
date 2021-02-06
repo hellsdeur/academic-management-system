@@ -1,4 +1,4 @@
-package sistema;
+package br.ufpa.poo.sistema;
 
 public class Disciplina {
 	private String nome;

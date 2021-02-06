@@ -1,4 +1,4 @@
-package sistema;
+package br.ufpa.poo.sistema;
 
 import java.util.Map;
 import java.util.HashMap;

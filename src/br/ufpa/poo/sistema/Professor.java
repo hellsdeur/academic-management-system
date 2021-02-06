@@ -1,4 +1,4 @@
-package sistema;
+package br.ufpa.poo.sistema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +16,15 @@ public class Professor extends Usuario {
 		this.turmas.add(turma);
 	}
 	
-	public void criarTarefa (Turma turma, String descricao) {
+	public Tarefa criarTarefa (Turma turma, String descricao) {
+		Tarefa tarefa;
 		if (this.turmas.contains(turma)) {
-			turma.novaTarefa(descricao);
+			tarefa = turma.novaTarefa(descricao);
 		}
 		else {
-			throw new IllegalArgumentException(this.getNome() + "não tem acesso a disciplina " + turma.getDisciplina().getNome());
+			throw new IllegalArgumentException(this.getNome() + " não tem acesso a disciplina " + turma.getDisciplina().getNome());
 		}
+		return tarefa;
 	}
 	
 	public void avaliarAluno (Aluno aluno, Turma turma, float nota, int avaliacao) {

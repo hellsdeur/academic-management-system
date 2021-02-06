@@ -1,4 +1,4 @@
-package sistema;
+package br.ufpa.poo.sistema;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -23,9 +23,7 @@ public class Aluno extends Usuario {
 	}
 	
 	public void submeterTarefa (Turma turma, Tarefa tarefa) {
-		if (this.historico.getDisciplinas().contains(turma.getDisciplina())) {
-			turma.registrarTarefa(this, tarefa);
-		}
+		turma.registrarTarefa(this, tarefa);
 	}
 	
 	public void consolidarNota (Disciplina disciplina, Character conceito) {

@@ -1,12 +1,12 @@
-package sistema;
+package br.ufpa.poo.sistema;
 
 // generic abstract user
 
 public abstract class Usuario {
-	private String nome;
+	protected String nome;
 	//private String username;
 	//private String password;
-	private int id;
+	protected int id;
 	
 	public Usuario (String nome, /*String username, String password,*/ int id) {
 		this.nome = nome;

@@ -1,4 +1,4 @@
-package sistema;
+package br.ufpa.poo.sistema;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class Administrador extends Usuario {
 	}
 	
 	public String getNome () {
-		return this.getNome();
+		return this.nome;
 	}
 	
 	public int getId () {

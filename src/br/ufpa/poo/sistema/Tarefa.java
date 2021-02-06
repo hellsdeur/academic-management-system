@@ -1,4 +1,4 @@
-package sistema;
+package br.ufpa.poo.sistema;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -26,13 +26,17 @@ public class Tarefa {
 		return this.descricao;
 	}
 	
-	public void registrar (Aluno aluno) {
+	public void registrarTarefa (Aluno aluno) {
 		if (this.listagem.keySet().contains(aluno)) {
 			this.listagem.put(aluno, true);
 		}
 		else {
 			throw new IllegalArgumentException(aluno.getNome() + " não tem acesso a essa disciplina");
 		}
+	}
+	
+	public Map<Aluno, Boolean> getListagem () {
+		return this.listagem;
 	}
 
 }

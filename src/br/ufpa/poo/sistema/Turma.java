@@ -1,4 +1,4 @@
-package sistema;
+package br.ufpa.poo.sistema;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -17,6 +17,7 @@ public class Turma {
 	public Turma (Disciplina disciplina, Professor professor, int avaliacoes) {
 		this.disciplina = disciplina;
 		this.professor = professor;
+		this.professor.registrar(this);
 		this.avaliacoes = avaliacoes;
 		this.alunos = new ArrayList<>();
 		this.tarefas = new ArrayList<>();
@@ -36,13 +37,15 @@ public class Turma {
 		}
 	}
 	
-	protected void novaTarefa (String descricao) {
-		this.tarefas.add(new Tarefa(this.tarefas.size()+1, descricao, this.alunos));
+	protected Tarefa novaTarefa (String descricao) {
+		Tarefa tarefa = new Tarefa(this.tarefas.size(), descricao, this.alunos);
+		this.tarefas.add(tarefa);
+		return tarefa;
 	}
 	
 	public void registrarTarefa (Aluno aluno, Tarefa tarefa) {
 		if (this.tarefas.contains(tarefa)) {
-			this.tarefas.get(tarefa.getIndex()).registrar(aluno);
+			this.tarefas.get(tarefa.getIndex()).registrarTarefa(aluno);
 		}
 		else {
 			throw new IllegalArgumentException("Tarefa inexistente");
@@ -92,6 +95,10 @@ public class Turma {
 	
 	public Disciplina getDisciplina () {
 		return this.disciplina;
+	}
+	
+	public List<Tarefa> getTarefas () {
+		return this.tarefas;
 	}
 
 }
