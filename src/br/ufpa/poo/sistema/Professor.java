@@ -27,7 +27,7 @@ public class Professor extends Usuario {
 		return tarefa;
 	}
 	
-	public void avaliarAluno (Aluno aluno, Turma turma, float nota, int avaliacao) {
+	public void avaliarAluno (Aluno aluno, Turma turma, double nota, int avaliacao) {
 		try {
 			turma.avaliar(aluno, nota, avaliacao);
 		} catch (Exception e) {

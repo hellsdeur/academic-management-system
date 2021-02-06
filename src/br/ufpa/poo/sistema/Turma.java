@@ -11,7 +11,7 @@ public class Turma {
 	private int avaliacoes;
 	private List<Aluno> alunos;
 	private List<Tarefa> tarefas;
-	private Map<Aluno, List<Float>> notas;
+	private Map<Aluno, List<Double>> notas;
 	
 
 	public Turma (Disciplina disciplina, Professor professor, int avaliacoes) {
@@ -29,9 +29,9 @@ public class Turma {
 			throw new IllegalArgumentException("Aluno já matriculado.");
 		} else {
 			this.alunos.add(aluno);
-			List<Float> notasAluno = new ArrayList<>();
+			List<Double> notasAluno = new ArrayList<>();
 			for (int i = 0; i < this.avaliacoes; ++i) {
-				notasAluno.add((float) 0);
+				notasAluno.add((double) 0);
 			}
 			notas.put(aluno, notasAluno);
 		}
@@ -52,7 +52,7 @@ public class Turma {
 		}
 	}
 	
-	public void avaliar (Aluno aluno, Float nota, int avaliacao) {
+	public void avaliar (Aluno aluno, Double nota, int avaliacao) {
 		if (this.avaliacoes < avaliacoes || avaliacoes < 0) {
 			throw new ArrayIndexOutOfBoundsException("Index da avaliação fora dos limites");
 		}
@@ -63,7 +63,7 @@ public class Turma {
 			throw new IllegalArgumentException("Aluno não pertence a essa turma.");
 		}
 		else {
-			List<Float> notasAtualizadas = this.notas.get(aluno);
+			List<Double> notasAtualizadas = this.notas.get(aluno);
 			notasAtualizadas.set(avaliacao-1, nota);
 			this.notas.put(aluno, notasAtualizadas);
 		}
@@ -73,7 +73,7 @@ public class Turma {
 		for (Aluno aluno: this.notas.keySet()) {
 			char conceito;
 			int media = 0;
-			for (Float nota: notas.get(aluno)) {
+			for (Double nota: notas.get(aluno)) {
 				media += nota;
 			}
 			media /= this.avaliacoes;

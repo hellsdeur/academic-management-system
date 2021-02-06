@@ -3,14 +3,13 @@ package br.ufpa.poo.sistema;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Administrador extends Usuario {
+public class Sistema {
 	private List<Professor> professores;
 	private List<Aluno> alunos;
 	private List<Disciplina> disciplinas;
 	private List<Turma> turmas;
 	
-	public Administrador(String nome, int id) {
-		super(nome, id);
+	public Sistema() {
 		professores = new ArrayList<>();
 		alunos = new ArrayList<>();
 		disciplinas = new ArrayList<>();
@@ -39,14 +38,6 @@ public class Administrador extends Usuario {
 		Turma turma = new Turma(disciplina, professor, avaliacoes);
 		this.turmas.add(turma);
 		return turma;
-	}
-	
-	public String getNome () {
-		return this.nome;
-	}
-	
-	public int getId () {
-		return this.getId();
 	}
 	
 	public List<Professor> getProfessores () {
