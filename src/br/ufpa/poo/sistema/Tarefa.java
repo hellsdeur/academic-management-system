@@ -21,18 +21,9 @@ public class Tarefa {
 	public int getIndex() {
 		return this.index;
 	}
-
-	public String getDescricao() {
-		return this.descricao;
-	}
 	
 	public void registrarTarefa (Aluno aluno) {
-		if (this.listagem.keySet().contains(aluno)) {
-			this.listagem.put(aluno, true);
-		}
-		else {
-			throw new IllegalArgumentException(aluno.getNome() + " não tem acesso a essa disciplina");
-		}
+		this.listagem.put(aluno, true);
 	}
 	
 	public Map<Aluno, Boolean> getListagem () {

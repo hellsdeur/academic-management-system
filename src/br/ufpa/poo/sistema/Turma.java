@@ -1,5 +1,6 @@
 package br.ufpa.poo.sistema;
 
+import br.ufpa.poo.exceptions.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -24,9 +25,9 @@ public class Turma {
 		this.notas = new HashMap<>();
 	}
 	
-	protected void matricular (Aluno aluno) {
+	protected void matricular (Aluno aluno) throws ListAlreadyContainsElementException {
 		if (this.alunos.contains(aluno)) {
-			throw new IllegalArgumentException("Aluno já matriculado.");
+			throw new ListAlreadyContainsElementException("Aluno já matriculado.");
 		} else {
 			this.alunos.add(aluno);
 			List<Double> notasAluno = new ArrayList<>();
@@ -37,30 +38,32 @@ public class Turma {
 		}
 	}
 	
-	protected Tarefa novaTarefa (String descricao) {
+	protected Tarefa novaTarefa (String descricao, Professor professor) throws ElementCanNotAcessObjectException {
 		Tarefa tarefa = new Tarefa(this.tarefas.size(), descricao, this.alunos);
-		this.tarefas.add(tarefa);
+		
+		if (this.professor.equals(professor)) {
+			this.tarefas.add(tarefa);
+		}
+		else {
+			throw new ElementCanNotAcessObjectException(professor + " não tem acesso a disciplina " + this.getDisciplina().getNome());
+		}
+		
 		return tarefa;
 	}
 	
 	public void registrarTarefa (Aluno aluno, Tarefa tarefa) {
-		if (this.tarefas.contains(tarefa)) {
-			this.tarefas.get(tarefa.getIndex()).registrarTarefa(aluno);
-		}
-		else {
-			throw new IllegalArgumentException("Tarefa inexistente");
-		}
+		this.tarefas.get(tarefa.getIndex()).registrarTarefa(aluno);
 	}
 	
-	public void avaliar (Aluno aluno, Double nota, int avaliacao) {
-		if (this.avaliacoes < avaliacoes || avaliacoes < 0) {
-			throw new ArrayIndexOutOfBoundsException("Index da avaliação fora dos limites");
+	public void avaliar (Aluno aluno, Double nota, int avaliacao) throws ElementDoesNotBelongToListException {
+		if (this.avaliacoes < avaliacao || avaliacao-1 < 0) {
+			throw new ArrayIndexOutOfBoundsException("Essa disciplina contém " + this.avaliacoes + " avaliações.");
 		}
 		else if (nota < 0 || nota > 10) {
 			throw new IllegalArgumentException("Nota deve ser um valor entre 0 e 10.");
 		}
 		else if (this.alunos.contains(aluno) == false) {
-			throw new IllegalArgumentException("Aluno não pertence a essa turma.");
+			throw new ElementDoesNotBelongToListException("Aluno não pertence a essa turma.");
 		}
 		else {
 			List<Double> notasAtualizadas = this.notas.get(aluno);
@@ -99,6 +102,10 @@ public class Turma {
 	
 	public List<Tarefa> getTarefas () {
 		return this.tarefas;
+	}
+	
+	public List<Aluno> getAlunos () {
+		return this.alunos;
 	}
 
 }

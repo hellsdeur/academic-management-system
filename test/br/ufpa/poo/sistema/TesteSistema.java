@@ -3,6 +3,9 @@ package br.ufpa.poo.sistema;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import br.ufpa.poo.exceptions.ElementCanNotAcessObjectException;
+import br.ufpa.poo.exceptions.ElementDoesNotBelongToListException;
+
 class TesteSistema {
 
 	@Test
@@ -45,7 +48,7 @@ class TesteSistema {
 	}
 	
 	@Test
-	void criarConsolidarTurma () {
+	void criarConsolidarTurma () throws ElementDoesNotBelongToListException {
 		Sistema sistema = new Sistema();
 		Professor prof = sistema.novoProfessor("Edsger Dijkstra");
 		Disciplina disc = sistema.novaDisciplina("Análise de Algoritmos");
@@ -62,7 +65,86 @@ class TesteSistema {
 	}
 	
 	@Test
-	void criarTarefa () {
+	void matricularAlunoJaMatriculado () {
+		Sistema sistema = new Sistema();
+		Professor prof = sistema.novoProfessor("Edsger Dijkstra");
+		Disciplina disc = sistema.novaDisciplina("Análise de Algoritmos");
+		Turma analiseTarde = sistema.novaTurma(disc, prof, 3);
+		Aluno aluno1 = sistema.novoAluno("Donald Knuth");
+		
+		aluno1.matricular(analiseTarde);
+		
+		aluno1.matricular(analiseTarde);
+		assertEquals(1, analiseTarde.getAlunos().size());
+	}
+	
+	@Test
+	void lancarNotaEmAvaliacaoForaDosLimites () throws ElementDoesNotBelongToListException {
+		Sistema sistema = new Sistema();
+		Professor prof = sistema.novoProfessor("Edsger Dijkstra");
+		Disciplina disc = sistema.novaDisciplina("Análise de Algoritmos");
+		Turma analiseTarde = sistema.novaTurma(disc, prof, 3);
+		Aluno aluno1 = sistema.novoAluno("Donald Knuth");
+		
+		aluno1.matricular(analiseTarde);
+		prof.avaliarAluno(aluno1, analiseTarde, 5, 1);
+		prof.avaliarAluno(aluno1, analiseTarde, 5, 2);
+		prof.avaliarAluno(aluno1, analiseTarde, 5.5, 4);
+		analiseTarde.consolidar();
+		
+		assertEquals('I', aluno1.getHistorico().getConceito(disc));
+	}
+	
+	@Test
+	void lancarNotaForaDosLimites () throws ElementDoesNotBelongToListException {
+		Sistema sistema = new Sistema();
+		Professor prof = sistema.novoProfessor("Edsger Dijkstra");
+		Disciplina disc = sistema.novaDisciplina("Análise de Algoritmos");
+		Turma analiseTarde = sistema.novaTurma(disc, prof, 3);
+		Aluno aluno1 = sistema.novoAluno("Donald Knuth");
+		
+		aluno1.matricular(analiseTarde);
+		prof.avaliarAluno(aluno1, analiseTarde, 10, 1);
+		prof.avaliarAluno(aluno1, analiseTarde, 10, 2);
+		prof.avaliarAluno(aluno1, analiseTarde, 11, 3);
+		analiseTarde.consolidar();
+		
+		assertEquals('R', aluno1.getHistorico().getConceito(disc));
+	}
+	
+	@Test
+	void lancarNotaAlunoForaDaTurma () throws ElementDoesNotBelongToListException {
+		Sistema sistema = new Sistema();
+		Professor prof = sistema.novoProfessor("Edsger Dijkstra");
+		Disciplina disc = sistema.novaDisciplina("Análise de Algoritmos");
+		Turma analiseTarde = sistema.novaTurma(disc, prof, 3);
+		Aluno aluno1 = sistema.novoAluno("Donald Knuth");
+		
+		prof.avaliarAluno(aluno1, analiseTarde, 10, 1);
+		analiseTarde.consolidar();
+		
+		assertNull(aluno1.getHistorico().getConceito(disc));
+	}
+	
+	@Test
+	void lancarNotaMaxima () throws ElementDoesNotBelongToListException {
+		Sistema sistema = new Sistema();
+		Professor prof = sistema.novoProfessor("Edsger Dijkstra");
+		Disciplina disc = sistema.novaDisciplina("Análise de Algoritmos");
+		Turma analiseTarde = sistema.novaTurma(disc, prof, 3);
+		Aluno aluno1 = sistema.novoAluno("Donald Knuth");
+		
+		aluno1.matricular(analiseTarde);
+		prof.avaliarAluno(aluno1, analiseTarde, 10, 1);
+		prof.avaliarAluno(aluno1, analiseTarde, 10, 2);
+		prof.avaliarAluno(aluno1, analiseTarde, 10, 3);
+		analiseTarde.consolidar();
+		
+		assertEquals('E', aluno1.getHistorico().getConceito(disc));
+	}
+	
+	@Test
+	void criarTarefa () throws ElementCanNotAcessObjectException {
 		Sistema sistema = new Sistema();
 		Professor prof = sistema.novoProfessor("Edsger Dijkstra");
 		Disciplina disc = sistema.novaDisciplina("Análise de Algoritmos");
@@ -76,7 +158,22 @@ class TesteSistema {
 	}
 	
 	@Test
-	void enviarTarefa () {
+	void criarTarefaDisciplinaSemAcesso () throws ElementCanNotAcessObjectException {
+		Sistema sistema = new Sistema();
+		Professor prof1 = sistema.novoProfessor("Edsger Dijkstra");
+		Professor prof2 = sistema.novoProfessor("Gustavo Pinto");
+		Disciplina disc = sistema.novaDisciplina("Análise de Algoritmos");
+		Turma analiseTarde = sistema.novaTurma(disc, prof1, 3);
+		
+		prof2.criarTarefa(analiseTarde, "Trabalho de Complexidade de Algoritmos");
+		prof2.criarTarefa(analiseTarde, "Trabalho de Algoritmos Recursivos");
+		prof2.criarTarefa(analiseTarde, "Trabalho de Técnicas de Programação");
+		
+		assertEquals(0, analiseTarde.getTarefas().size());
+	}
+	
+	@Test
+	void enviarTarefa () throws ElementCanNotAcessObjectException {
 		Sistema sistema = new Sistema();
 		Professor prof = sistema.novoProfessor("Edsger Dijkstra");
 		Aluno aluno1 = sistema.novoAluno("Donald Knuth");
@@ -89,6 +186,28 @@ class TesteSistema {
 		aluno1.submeterTarefa(analiseTarde, tarefa1);
 		
 		assertEquals(true, tarefa1.getListagem().get(aluno1));
+	}
+	
+	@Test
+	void matricularVariasDisciplinas () {
+		Sistema sistema = new Sistema();
+		Professor prof = sistema.novoProfessor("Edsger Dijkstra");
+		Disciplina disc1 = sistema.novaDisciplina("Programação");
+		Disciplina disc2 = sistema.novaDisciplina("Teoria da Computação");
+		Disciplina disc3 = sistema.novaDisciplina("Análise de Algoritmos");
+		Disciplina disc4 = sistema.novaDisciplina("Matemática Concreta");
+		
+		Turma programacaoTarde = sistema.novaTurma(disc1, prof, 3);
+		Turma computacaoTarde = sistema.novaTurma(disc2, prof, 3);
+		Turma analiseTarde = sistema.novaTurma(disc3, prof, 3);
+		Turma concretaTarde = sistema.novaTurma(disc4, prof, 3);
+		
+		Aluno aluno1 = sistema.novoAluno("Donald Knuth");
+		for (Turma turma: sistema.getTurmas()) {
+			aluno1.matricular(turma);
+		}
+		
+		assertEquals(4, aluno1.getHistorico().getDisciplinas().size());
 	}
 
 }

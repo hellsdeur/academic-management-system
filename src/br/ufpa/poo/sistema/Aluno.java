@@ -1,6 +1,9 @@
 package br.ufpa.poo.sistema;
 
 import java.util.List;
+
+import br.ufpa.poo.exceptions.ListAlreadyContainsElementException;
+
 import java.util.ArrayList;
 
 public class Aluno extends Usuario {
@@ -13,12 +16,12 @@ public class Aluno extends Usuario {
 	}
 	
 	public void matricular (Turma turma) {
-		if (this.historico.getDisciplinas().contains(turma.getDisciplina())) {
-			throw new IllegalArgumentException("Disciplina já consta no histórico.");
-		}
-		else {
+		try {
 			historico.registrar(turma.getDisciplina());
 			turma.matricular(this);
+		}
+		catch (ListAlreadyContainsElementException e) {
+			System.out.println("O aluno " + this.nome + " já está matriculado em " + turma.getDisciplina().getNome());
 		}
 	}
 	
