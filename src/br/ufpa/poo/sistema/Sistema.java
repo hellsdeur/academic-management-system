@@ -2,6 +2,9 @@ package br.ufpa.poo.sistema;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import br.ufpa.poo.exceptions.InvalidPasswordException;
+import br.ufpa.poo.exceptions.InvalidUsernameException;
 import br.ufpa.poo.exceptions.ListAlreadyContainsElementException;
 import br.ufpa.poo.exceptions.StringTooShortException;
 
@@ -62,6 +65,25 @@ public class Sistema {
 		Turma turma = new Turma(disciplina, professor, avaliacoes);
 		this.turmas.add(turma);
 		return turma;
+	}
+	
+	public Boolean autenticar (String usuario, String senha) {
+		Boolean login = false;
+		Autenticacao aut = new Autenticacao(usuario, senha);
+		List<Usuario> todos = new ArrayList<>(this.professores);
+		todos.addAll(this.alunos);
+		try {
+			if (aut.login(todos)) {
+				login = true;
+			}
+		}
+		catch (InvalidUsernameException e) {
+			e.getMessage();
+		}
+		catch (InvalidPasswordException e) {
+			e.getMessage();
+		}
+		return login;
 	}
 	
 	public List<Usuario> getProfessores () {

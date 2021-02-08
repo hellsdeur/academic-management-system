@@ -28,7 +28,8 @@ public class Turma {
 	protected void matricular (Aluno aluno) throws ListAlreadyContainsElementException {
 		if (this.alunos.contains(aluno)) {
 			throw new ListAlreadyContainsElementException("Aluno já matriculado.");
-		} else {
+		}
+		else {
 			this.alunos.add(aluno);
 			List<Double> notasAluno = new ArrayList<>();
 			for (int i = 0; i < this.avaliacoes; ++i) {

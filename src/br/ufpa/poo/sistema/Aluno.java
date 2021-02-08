@@ -23,7 +23,7 @@ public class Aluno extends Usuario {
 			turma.matricular(this);
 		}
 		catch (ListAlreadyContainsElementException e) {
-			System.out.println("O aluno " + this.nome + " já está matriculado em " + turma.getDisciplina().getNome());
+			e.getMessage();
 		}
 	}
 	
