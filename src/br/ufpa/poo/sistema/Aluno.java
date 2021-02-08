@@ -3,6 +3,7 @@ package br.ufpa.poo.sistema;
 import java.util.List;
 
 import br.ufpa.poo.exceptions.ListAlreadyContainsElementException;
+import br.ufpa.poo.exceptions.StringTooShortException;
 
 import java.util.ArrayList;
 
@@ -10,8 +11,9 @@ public class Aluno extends Usuario {
 
 	private Historico historico;
 	
-	public Aluno (String nome, int id) {
-		super (nome, id);
+	public Aluno (String nome, int id, String usuario, String senha, List<Usuario> alunos)
+			throws StringTooShortException, ListAlreadyContainsElementException {
+		super (nome, id, usuario, senha, alunos);
 		this.historico = new Historico();
 	}
 	

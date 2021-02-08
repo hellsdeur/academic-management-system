@@ -5,13 +5,16 @@ import java.util.List;
 
 import br.ufpa.poo.exceptions.ElementCanNotAcessObjectException;
 import br.ufpa.poo.exceptions.ElementDoesNotBelongToListException;
+import br.ufpa.poo.exceptions.ListAlreadyContainsElementException;
+import br.ufpa.poo.exceptions.StringTooShortException;
 
 public class Professor extends Usuario {
 
 	private List<Turma> turmas;
 	
-	public Professor (String nome, int id) {
-		super (nome, id);
+	public Professor (String nome, int id, String usuario, String senha, List<Usuario> professores)
+			throws StringTooShortException, ListAlreadyContainsElementException {
+		super (nome, id, usuario, senha, professores);
 		this.turmas = new ArrayList<>();
 	}
 	

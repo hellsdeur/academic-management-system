@@ -2,10 +2,12 @@ package br.ufpa.poo.sistema;
 
 import java.util.List;
 import java.util.ArrayList;
+import br.ufpa.poo.exceptions.ListAlreadyContainsElementException;
+import br.ufpa.poo.exceptions.StringTooShortException;
 
 public class Sistema {
-	private List<Professor> professores;
-	private List<Aluno> alunos;
+	private List<Usuario> professores;
+	private List<Usuario> alunos;
 	private List<Disciplina> disciplinas;
 	private List<Turma> turmas;
 	
@@ -16,15 +18,30 @@ public class Sistema {
 		turmas = new ArrayList<>();
 	}
 	
-	public Professor novoProfessor (String nome) {
-		Professor professor = new Professor(nome, this.professores.size()+1);
-		this.professores.add(professor);
+	public Professor novoProfessor (String nome, String usuario, String senha)
+			throws ListAlreadyContainsElementException {
+		Professor professor = null;
+		try {
+			professor = new Professor(nome, this.professores.size()+1, usuario, senha, this.professores);
+			this.professores.add(professor);
+		}
+		catch (StringTooShortException e) {
+			e.getMessage();
+		}
+		
 		return professor;
 	}
 	
-	public Aluno novoAluno (String nome) {
-		Aluno aluno = new Aluno(nome, this.alunos.size()+1);
-		this.alunos.add(aluno);
+	public Aluno novoAluno (String nome, String usuario, String senha)
+			throws ListAlreadyContainsElementException {
+		Aluno aluno = null;
+		try {
+			aluno = new Aluno(nome, this.alunos.size()+1, usuario, senha, this.alunos);
+			this.alunos.add(aluno);
+		}
+		catch (StringTooShortException e) {
+			e.getMessage();
+		}
 		return aluno;
 	}
 	
@@ -40,11 +57,11 @@ public class Sistema {
 		return turma;
 	}
 	
-	public List<Professor> getProfessores () {
+	public List<Usuario> getProfessores () {
 		return this.professores;
 	}
 	
-	public List<Aluno> getAlunos () {
+	public List<Usuario> getAlunos () {
 		return this.alunos;
 	}
 	
