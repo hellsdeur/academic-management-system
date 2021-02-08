@@ -28,6 +28,9 @@ public class Sistema {
 		catch (StringTooShortException e) {
 			e.getMessage();
 		}
+		catch (ListAlreadyContainsElementException e) {
+			e.getMessage();
+		}
 		
 		return professor;
 	}
@@ -42,6 +45,10 @@ public class Sistema {
 		catch (StringTooShortException e) {
 			e.getMessage();
 		}
+		catch (ListAlreadyContainsElementException e) {
+			e.getMessage();
+		}
+		
 		return aluno;
 	}
 	

@@ -18,7 +18,7 @@ public abstract class Usuario {
 		if (usuario.length() < 6) {
 			throw new StringTooShortException("Nome de usuário deve ter pelo menos 6 caracteres.");
 		}
-		if (usuario.length() < 6) {
+		if (senha.length() < 6) {
 			throw new StringTooShortException("Senha deve ter pelo menos 6 caracteres.");
 		}
 		for (Usuario u: usuarios) {

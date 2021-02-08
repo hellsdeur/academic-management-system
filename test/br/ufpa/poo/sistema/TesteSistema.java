@@ -8,36 +8,8 @@ import br.ufpa.poo.exceptions.ElementDoesNotBelongToListException;
 import br.ufpa.poo.exceptions.ListAlreadyContainsElementException;
 
 class TesteSistema {
-
-	@Test
-	void criarAdministrador () {
-		Sistema sistema = new Sistema();
-		
-		assertEquals(0, sistema.getAlunos().size() +
-						sistema.getDisciplinas().size() +
-						sistema.getProfessores().size() +
-						sistema.getDisciplinas().size());
-	}
 	
-	@Test
-	void criarProfessor ()
-			throws ListAlreadyContainsElementException {
-		Sistema sistema = new Sistema();
-		Professor prof1 = sistema.novoProfessor("Edsger Dijkstra", "eddijk", "123456");
-		
-		assertEquals(1, sistema.getProfessores().size());
-	}
 	
-	@Test
-	void criarAlunos ()
-			throws ListAlreadyContainsElementException {
-		Sistema sistema = new Sistema();
-		Aluno aluno1 = sistema.novoAluno("Donald Knuth", "donknuth", "235711");
-		Aluno aluno2 = sistema.novoAluno("Linus Torvalds", "windowsisbad", "853211");
-		Aluno aluno3 = sistema.novoAluno("Denis Ritchie", "memoryleak666", "3115731");
-		
-		assertEquals(3, sistema.getAlunos().size());
-	}
 	
 	@Test
 	void criarDisciplinas () {
@@ -48,6 +20,24 @@ class TesteSistema {
 		Disciplina disc4 = sistema.novaDisciplina("Matemática Concreta");
 		
 		assertEquals(4, sistema.getDisciplinas().size());
+	}
+	
+	@Test
+	void criarTurmas ()
+			throws ListAlreadyContainsElementException {
+		Sistema sistema = new Sistema();
+		Professor prof1 = sistema.novoProfessor("Edsger Dijkstra", "eddijk", "123456");
+		Disciplina disc1 = sistema.novaDisciplina("Programação");
+		Disciplina disc2 = sistema.novaDisciplina("Teoria da Computação");
+		Disciplina disc3 = sistema.novaDisciplina("Análise de Algoritmos");
+		Disciplina disc4 = sistema.novaDisciplina("Matemática Concreta");
+		
+		Turma[] turmaArr = new Turma[4];
+		for (int i = 0; i < 4; ++i) {
+			turmaArr[i] = sistema.novaTurma(sistema.getDisciplinas().get(i), prof1, 3);
+		}
+		
+		assertEquals(4, sistema.getTurmas().size());
 	}
 	
 	@Test
