@@ -95,22 +95,24 @@ public class Main {
 				read1 = in.nextLine();
 				System.out.println ("Senha: ");
 				read2 = in.nextLine();
-				if (sis.autenticar(read1, read2) == true) 
+				if (sis.autenticar(read1, read2) == true) {
 					System.out.println ("Login autorizado");
-				for (int i = 0; i < sis.getProfessores().size(); i++) {
-					if (sis.getProfessores().get(i).getUsuario() == read1 && sis.getProfessores().get(i).getSenha() == read2) {
-						login = 1;
-						readprof = i;
+					for (int i = 0; i < sis.getProfessores().size(); i++) {
+						if (sis.getProfessores().get(i).getUsuario().equals(read1) && sis.getProfessores().get(i).getSenha().equals(read2)) {
+							login = 1;
+							readprof = i;
+						}
 					}
-				}
-				if (login != 1) {
-					for (int i = 0; i < sis.getAlunos().size(); i++) {
-						if (sis.getAlunos().get(i).getUsuario() == read1 && sis.getAlunos().get(i).getSenha() == read2) {
-							login = 2;
-							readaluno = i;
+					if (login != 1) {
+						for (int i = 0; i < sis.getAlunos().size(); i++) {
+							if (sis.getAlunos().get(i).getUsuario().equals(read1) && sis.getAlunos().get(i).getSenha().equals(read2)) {
+								login = 2;
+								readaluno = i;
+							}
 						}
 					}
 				}
+					
 
 				switch (login) {
 				case 1: //Login Professor

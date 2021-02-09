@@ -16,8 +16,8 @@ public class Autenticacao {
 	
 	public Boolean login (List<Usuario> usuarios) throws InvalidPasswordException, InvalidUsernameException {
 		for (Usuario u: usuarios) {
-			if (u.getUsuario() == this.usuario) {
-				if (u.getSenha() == this.senha) {
+			if (u.getUsuario().equals(this.usuario)) {
+				if (u.getSenha().equals(this.senha)) {
 					return true;
 				}
 				else {
