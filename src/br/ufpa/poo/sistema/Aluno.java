@@ -11,7 +11,7 @@ public class Aluno extends Usuario {
 
 	private Historico historico;
 	
-	public Aluno (String nome, int id, String usuario, String senha, List<Usuario> alunos)
+	public Aluno (String nome, int id, String usuario, String senha, List<Aluno> alunos)
 			throws StringTooShortException, ListAlreadyContainsElementException {
 		super (nome, id, usuario, senha, alunos);
 		this.historico = new Historico();

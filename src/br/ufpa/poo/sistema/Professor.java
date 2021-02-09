@@ -12,9 +12,9 @@ public class Professor extends Usuario {
 
 	private List<Turma> turmas;
 	
-	public Professor (String nome, int id, String usuario, String senha, List<Usuario> professores)
+	public Professor (String nome, String usuario, String senha, List<Professor> professores)
 			throws StringTooShortException, ListAlreadyContainsElementException {
-		super (nome, id, usuario, senha, professores);
+		super (nome, usuario, senha, professores);
 		this.turmas = new ArrayList<>();
 	}
 	

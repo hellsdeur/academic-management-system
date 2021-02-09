@@ -13,23 +13,42 @@ public abstract class Usuario {
 	private String senha;
 	protected int id;
 	
-	public Usuario (String nome, int id, String usuario, String senha, List<Usuario> usuarios)
+	public Usuario (String nomeAluno, int idAluno, String usuarioAluno, String senhaAluno, List<Aluno> alunos)
 			throws StringTooShortException, ListAlreadyContainsElementException {
-		if (usuario.length() < 6) {
+		if (usuarioAluno.length() < 6) {
 			throw new StringTooShortException("Nome de usuário deve ter pelo menos 6 caracteres.");
 		}
-		if (senha.length() < 6) {
+		if (senhaAluno.length() < 6) {
 			throw new StringTooShortException("Senha deve ter pelo menos 6 caracteres.");
 		}
-		for (Usuario u: usuarios) {
-			if (u.getUsuario() == usuario) {
+		for (Aluno a: alunos) {
+			if (a.getUsuario() == usuarioAluno) {
 				throw new ListAlreadyContainsElementException("Nome de usuário já existe.");
 			}
 		}
-		this.nome = nome;
-		this.id = id;
-		this.usuario = usuario;
-		this.senha = senha;
+		this.nome = nomeAluno;
+		this.id = idAluno;
+		this.usuario = usuarioAluno;
+		this.senha = senhaAluno;
+	}
+	
+	public Usuario (String nomeProfessor, String usuarioProfessor, String senhaProfessor, List<Professor> professores)
+			throws StringTooShortException, ListAlreadyContainsElementException {
+		if (usuarioProfessor.length() < 6) {
+			throw new StringTooShortException("Nome de usuário deve ter pelo menos 6 caracteres.");
+		}
+		if (senhaProfessor.length() < 6) {
+			throw new StringTooShortException("Senha deve ter pelo menos 6 caracteres.");
+		}
+		for (Usuario u: professores) {
+			if (u.getUsuario() == usuarioProfessor) {
+				throw new ListAlreadyContainsElementException("Nome de usuário já existe.");
+			}
+		}
+		this.nome = nomeProfessor;
+		this.id = professores.size();
+		this.usuario = usuarioProfessor;
+		this.senha = senhaProfessor;
 	}
 	
 	protected String getUsuario () {

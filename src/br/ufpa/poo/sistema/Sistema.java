@@ -9,8 +9,8 @@ import br.ufpa.poo.exceptions.ListAlreadyContainsElementException;
 import br.ufpa.poo.exceptions.StringTooShortException;
 
 public class Sistema {
-	private List<Usuario> professores;
-	private List<Usuario> alunos;
+	private List<Professor> professores;
+	private List<Aluno> alunos;
 	private List<Disciplina> disciplinas;
 	private List<Turma> turmas;
 	
@@ -25,7 +25,7 @@ public class Sistema {
 			throws ListAlreadyContainsElementException {
 		Professor professor = null;
 		try {
-			professor = new Professor(nome, this.professores.size()+1, usuario, senha, this.professores);
+			professor = new Professor(nome, usuario, senha, this.professores);
 			this.professores.add(professor);
 		}
 		catch (StringTooShortException e) {
@@ -86,11 +86,11 @@ public class Sistema {
 		return login;
 	}
 	
-	public List<Usuario> getProfessores () {
+	public List<Professor> getProfessores () {
 		return this.professores;
 	}
 	
-	public List<Usuario> getAlunos () {
+	public List<Aluno> getAlunos () {
 		return this.alunos;
 	}
 	
