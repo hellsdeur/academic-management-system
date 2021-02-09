@@ -170,8 +170,12 @@ public class Main {
 							if (sis.getAlunos().get(readaluno).getHistorico().getCount() > 0) {
 								System.out.println ("Escolha uma turma: ");
 								while (check != 1) {
-									for (int i = 0; i < sis.getAlunos().get(readaluno).getHistorico().getCount(); i++) 
-										System.out.println ("["+i+"]-"+sis.getAlunos().get(readaluno).getHistorico().getDisciplinas());
+									Historico historico = sis.getAlunos().get(readaluno).getHistorico();
+									int i = 0;
+									for (Disciplina disc: historico.getDisciplinas()) {
+										System.out.println ("["+i+"]-" + disc.getNome());
+										i++;
+									}
 									readturma = in.nextInt();
 									if ((readturma >= 0)&&(readturma <= sis.getAlunos().get(readaluno).getHistorico().getCount()))
 										check = 1;
@@ -203,8 +207,11 @@ public class Main {
 							break;
 
 						case 3://Historico
-							for (int i = 0; i < sis.getAlunos().get(readaluno).getHistorico().getCount(); i++)
-								System.out.println ("??????????");
+							System.out.println("Histórico: ");
+							Historico historico = sis.getAlunos().get(readaluno).getHistorico();
+							for (Disciplina disc: historico.getDisciplinas()) {
+								System.out.println(disc.getNome() + ": " + historico.getConceito(disc));
+							}
 							break;
 
 						default://Deslogar
