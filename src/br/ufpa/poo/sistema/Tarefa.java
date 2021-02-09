@@ -29,5 +29,9 @@ public class Tarefa {
 	public Map<Aluno, Boolean> getListagem () {
 		return this.listagem;
 	}
+	
+	public String getDesc () {
+		return descricao;
+	}
 
 }

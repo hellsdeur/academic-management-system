@@ -16,14 +16,14 @@ public abstract class Usuario {
 	public Usuario (String nomeAluno, int idAluno, String usuarioAluno, String senhaAluno, List<Aluno> alunos)
 			throws StringTooShortException, ListAlreadyContainsElementException {
 		if (usuarioAluno.length() < 6) {
-			throw new StringTooShortException("Nome de usuÃ¡rio deve ter pelo menos 6 caracteres.");
+			throw new StringTooShortException("Nome de usuário deve ter pelo menos 6 caracteres.");
 		}
 		if (senhaAluno.length() < 6) {
 			throw new StringTooShortException("Senha deve ter pelo menos 6 caracteres.");
 		}
 		for (Aluno a: alunos) {
 			if (a.getUsuario() == usuarioAluno) {
-				throw new ListAlreadyContainsElementException("Nome de usuÃ¡rio jÃ¡ existe.");
+				throw new ListAlreadyContainsElementException("Nome de usuário já existe.");
 			}
 		}
 		this.nome = nomeAluno;
@@ -35,14 +35,14 @@ public abstract class Usuario {
 	public Usuario (String nomeProfessor, String usuarioProfessor, String senhaProfessor, List<Professor> professores)
 			throws StringTooShortException, ListAlreadyContainsElementException {
 		if (usuarioProfessor.length() < 6) {
-			throw new StringTooShortException("Nome de usuÃ¡rio deve ter pelo menos 6 caracteres.");
+			throw new StringTooShortException("Nome de usuário deve ter pelo menos 6 caracteres.");
 		}
 		if (senhaProfessor.length() < 6) {
 			throw new StringTooShortException("Senha deve ter pelo menos 6 caracteres.");
 		}
 		for (Usuario u: professores) {
 			if (u.getUsuario() == usuarioProfessor) {
-				throw new ListAlreadyContainsElementException("Nome de usuÃ¡rio jÃ¡ existe.");
+				throw new ListAlreadyContainsElementException("Nome de usuário já existe.");
 			}
 		}
 		this.nome = nomeProfessor;
@@ -58,5 +58,11 @@ public abstract class Usuario {
 	protected String getSenha () {
 		return this.senha;
 	}
+	
+	protected String getNome () {
+		return this.nome;
+	}
 
 }
+
+

@@ -51,4 +51,7 @@ public class Professor extends Usuario {
 		
 	}
 	
+	public List<Turma> getTurma (){
+		return this.turmas;
+	}
 }
