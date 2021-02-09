@@ -108,5 +108,9 @@ public class Turma {
 	public List<Aluno> getAlunos () {
 		return this.alunos;
 	}
+	
+	public int getAval () {
+		return this.avaliacoes;
+	}
 
 }
