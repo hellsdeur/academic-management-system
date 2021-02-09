@@ -24,7 +24,7 @@ public class Aluno extends Usuario {
 			turma.matricular(this);
 		}
 		catch (ListAlreadyContainsElementException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 	}
 	

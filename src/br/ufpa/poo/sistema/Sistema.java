@@ -29,10 +29,10 @@ public class Sistema {
 			this.professores.add(professor);
 		}
 		catch (StringTooShortException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		catch (ListAlreadyContainsElementException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		
 		return professor;
@@ -46,10 +46,10 @@ public class Sistema {
 			this.alunos.add(aluno);
 		}
 		catch (StringTooShortException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		catch (ListAlreadyContainsElementException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		
 		return aluno;
@@ -78,10 +78,10 @@ public class Sistema {
 			}
 		}
 		catch (InvalidUsernameException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		catch (InvalidPasswordException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		return login;
 	}

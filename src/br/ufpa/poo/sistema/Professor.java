@@ -29,7 +29,7 @@ public class Professor extends Usuario {
 			tarefa = turma.novaTarefa(descricao, this);
 		}
 		catch (ElementCanNotAcessObjectException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		
 		return tarefa;
@@ -40,13 +40,13 @@ public class Professor extends Usuario {
 			turma.avaliar(aluno, nota, avaliacao);
 		}
 		catch (ArrayIndexOutOfBoundsException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		catch (IllegalArgumentException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		catch (ElementDoesNotBelongToListException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		
 	}
