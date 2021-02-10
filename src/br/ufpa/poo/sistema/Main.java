@@ -196,7 +196,7 @@ public class Main {
 								System.out.println ("N�o h� turmas");						
 							break;
 						case 2: //Acessar
-							if (sis.getAlunos().get(readaluno).getHistorico().getCount() > 0) {
+							if (sis.getAlunos().get(readaluno).getHistorico().getDisciplinas().size() > 0) {
 								System.out.println ("Escolha uma turma: ");
 								while (check != 1) {
 									Historico historico = sis.getAlunos().get(readaluno).getHistorico();
@@ -206,7 +206,7 @@ public class Main {
 										i++;
 									}
 									readturma = in.nextInt();
-									if ((readturma >= 0)&&(readturma <= sis.getAlunos().get(readaluno).getHistorico().getCount()))
+									if ((readturma >= 0)&&(readturma <= sis.getAlunos().get(readaluno).getHistorico().getDisciplinas().size()))
 										check = 1;
 								}
 								System.out.println ("Escolha uma opcao: ");

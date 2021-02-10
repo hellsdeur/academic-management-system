@@ -37,7 +37,7 @@ class TesteSistema {
 			turmaArr[i] = sistema.novaTurma(sistema.getDisciplinas().get(i), prof1, 3);
 		}
 		
-		assertEquals(4, sistema.getTurmas().size());
+		assertEquals(4, prof1.getTurma().size());
 	}
 	
 	@Test

@@ -6,16 +6,13 @@ import java.util.Set;
 
 public class Historico {
 	private Map<Disciplina, Character> conceitos;
-	private int CountTurmas;
 	
 	public Historico () {
 		this.conceitos = new HashMap<>();
-		this.CountTurmas = 0;
 	}
 	
 	public void registrar (Disciplina disciplina) {
 		conceitos.put(disciplina, '-');
-		CountTurmas++;
 	}
 	
 	public void consolidar (Disciplina disciplina, Character conceito) {
@@ -30,7 +27,4 @@ public class Historico {
 		return conceitos.get(disciplina);
 	}
 	
-	public int getCount () {
-		return CountTurmas;
-	}
 }

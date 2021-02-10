@@ -46,7 +46,7 @@ public class Turma {
 			this.tarefas.add(tarefa);
 		}
 		else {
-			throw new ElementCanNotAcessObjectException(professor + " não tem acesso a disciplina " + this.getDisciplina().getNome());
+			throw new ElementCanNotAcessObjectException(professor.getNome() + " não tem acesso a disciplina " + this.getDisciplina().getNome());
 		}
 		
 		return tarefa;
