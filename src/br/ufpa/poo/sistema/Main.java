@@ -17,26 +17,26 @@ public class Main {
 
 		System.out.println ("Bem vindo, iniciando o sistema...");
 		Sistema sis = new Sistema();
-		while (option != 5) {
+		while (option != 6) {
 			System.out.println ("[1]- Novo professor");
 			System.out.println ("[2]- Novo Aluno");
 			System.out.println ("[3]- Abrir Turma");		
 			System.out.println ("[4]- Logar");
 			System.out.println ("[5]- Sair");
 			System.out.println ("-----------------------------------------------------");
-			System.out.format("Escolha uma opção: ");
+			System.out.format("Escolha uma op��o: ");
 			option = in.nextInt(); in.nextLine();
 
 			switch (option) {
 			case 1:
 				System.out.format ("Criando um novo professor, digite o nome: ");
 				read1 = in.nextLine();
-				System.out.format ("Digite o nome de usuário (Mínimo 6 caracteres): ");
+				System.out.format ("Digite o nome de usu�rio (M�nimo 6 caracteres): ");
 				read2 = in.nextLine();
-				System.out.format ("Digite uma senha (Mínimo 6 caracteres): ");
+				System.out.format ("Digite uma senha (M�nimo 6 caracteres): ");
 				read3 = in.nextLine();
 				sis.novoProfessor(read1, read2, read3);
-				System.out.println ("Usuário criado com sucesso! \n");
+				System.out.println ("Usu�rio criado com sucesso! \n");
 				profcount++;
 				break;
 
@@ -44,12 +44,12 @@ public class Main {
 			case 2:
 				System.out.format ("Criando um novo aluno, digite o nome: ");		
 				read1 = in.nextLine();		
-				System.out.format ("Digite o nome de usuário (Mínimo 6 caracteres): ");		
+				System.out.format ("Digite o nome de usu�rio (M�nimo 6 caracteres): ");		
 				read2 = in.nextLine();		
-				System.out.format ("Digite uma senha (Mínimo 6 caracteres): ");
+				System.out.format ("Digite uma senha (M�nimo 6 caracteres): ");
 				read3 = in.nextLine();
 				sis.novoAluno(read1, read2, read3);
-				System.out.println ("Usuário criado com sucesso! \n");
+				System.out.println ("Usu�rio criado com sucesso! \n");
 				break;
 
 
@@ -61,25 +61,25 @@ public class Main {
 						System.out.println ("["+i+"]- "+sis.getProfessores().get(i).getNome());
 					System.out.format ("Escolha um professor para ministrar: ");						
 					readint1 = in.nextInt();		
-					System.out.format ("Quantas avaliações terão na turma?");
+					System.out.format ("Quantas avalia��es ter�o na turma? ");
 					readint2 = in.nextInt();
 					sis.novaTurma(sis.novaDisciplina(read1), sis.getProfessores().get(readint1), readint2);
 					System.out.println ("Turma criada! \n");
 				}
 				else  
-					System.out.println ("Não há professores no sistema para registrar a turma \n");
+					System.out.println ("N�o h� professores no sistema para registrar a turma \n");
 				break;
 
 			case 4:
 				login = 0;
-				System.out.println ("Usuário: ");
+				System.out.format("Usu�rio: ");
 				read1 = in.nextLine();
-				System.out.println ("Senha: ");
+				System.out.format("Senha: ");
 				read2 = in.nextLine();
 				if (sis.autenticar(read1, read2)) {
 					System.out.println ("Login autorizado \n");
 					for (int i = 0; i < sis.getProfessores().size(); i++) {
-						if (sis.getProfessores().get(i).getSenha().equals(read2)) {
+						if (sis.getProfessores().get(i).getUsuario().equals(read1)) {
 							login = 1;
 							readprof = i;
 						}
@@ -92,8 +92,7 @@ public class Main {
 							}
 						}
 					}
-				}
-					
+				}					
 
 				switch (login) {
 				case 1: //Login Professor
@@ -107,12 +106,12 @@ public class Main {
 							System.out.println ("[2]- Avaliar aluno");
 							System.out.println ("[3]- Consolidar notas");
 							System.out.println ("[4]- Logoff");
-							System.out.format ("Escolha uma opção: ");
+							System.out.format ("Escolha uma op��o: ");
 							option = in.nextInt();
 							in.nextLine();
 							switch (option) {	
 							case 1: //Criar Tarefa
-								System.out.format ("Digite a descrição da tarefa: ");
+								System.out.format ("Digite a descri��o da tarefa: ");
 								read1 = in.nextLine();
 								sis.getProfessores().get(readprof).criarTarefa(sis.getProfessores().get(readprof).getTurma().get(readturma), read1);
 								System.out.println ("Tarefa criada com sucesso \n");
@@ -125,39 +124,39 @@ public class Main {
 									System.out.format ("Escolha um aluno, digite outro numero para cancelar: ");
 									readaluno = in.nextInt();
 									if (readaluno >=0 || readaluno < sis.getTurmas().get(readturma).getAlunos().size()) {
-									System.out.println ("Qual avaliação deseja selecionar?");
+									System.out.println ("Qual avalia��o deseja selecionar?");
 									for (int i = 0; i < sis.getTurmas().get(readturma).getAval(); i++) 
-										System.out.println ("Avaliação -"+(i+1));
+										System.out.println ("Avalia��o -"+(i+1));
 									readint1 = in.nextInt();
 									System.out.format ("Digite a nota: ");
 									readdouble = in.nextDouble();
-									System.out.println ("Confirma a ação? [1]-Sim / [0]-Não");
+									System.out.println ("Confirma a a��o? [1]-Sim / [0]-N�o");
 									check = in.nextInt();
 									if (check == 1) {
 										sis.getProfessores().get(readprof).getTurma().get(readturma).avaliar(sis.getTurmas().get(readturma).getAlunos().get(readaluno), readdouble, readint1);
 										System.out.println ("Nota registrada! \n");
 									}
 									else
-										System.out.println ("Operação cancelada \n");																				
+										System.out.println ("Opera��o cancelada \n");																				
 									}
 									else
-										System.out.println ("Operação cancelada \n");
+										System.out.println ("Opera��o cancelada \n");
 								}
 								else
-									System.out.println ("Não há alunos matriculados \n");
+									System.out.println ("N�o h� alunos matriculados \n");
 								break;
 							case 3:
 								if (sis.getTurmas().get(readturma).getAlunos().size()!=0) {
-								System.out.println ("Deseja consolidar notas da turma "+sis.getTurmas().get(readturma).getDisciplina().getNome()+"? [1]-Sim / [0]-Não");
+								System.out.println ("Deseja consolidar notas da turma "+sis.getTurmas().get(readturma).getDisciplina().getNome()+"? [1]-Sim / [0]-N�o");
 								check = in.nextInt();
 								if (check == 1) {
 									sis.getProfessores().get(readprof).getTurma().get(readturma).consolidar();
 									System.out.println ("Notas consolidadas com sucesso! \n");}
 								else
-									System.out.println ("Operação cancelada!\n");
+									System.out.println ("Opera��o cancelada!\n");
 								}
 								else
-									System.out.println ("Não há alunos na turma! \n");
+									System.out.println ("N�o h� alunos na turma! \n");
 								break;
 
 							default://Logoff
@@ -168,13 +167,13 @@ public class Main {
 						}
 					}
 					else 
-						System.out.println ("Professor não possui nenhuma turma registrada!");
+						System.out.println ("Professor n�o possui nenhuma turma registrada!");
 					break;
 
 
 				case 2://Login Aluno
 					System.out.println ("Bem vindo ao menu do Aluno, o que deseja? ");
-					while (option != 4) {
+					while (option != 5) {
 						System.out.println ("[1]- Matricular em uma turma");
 						System.out.println ("[2]- Acessar uma turma matriculada");
 						System.out.println ("[3]- Ver Historico");
@@ -190,11 +189,11 @@ public class Main {
 							readturma = in.nextInt();
 							if (readturma >=0 || readturma < sis.getTurmas().size()) {
 							sis.getAlunos().get(readaluno).matricular(sis.getTurmas().get(readturma));
-							System.out.println ("Matricula concluída!");
+							System.out.println ("Matricula conclu�da!");
 								}
 							}
 							else
-								System.out.println ("Não há turmas");						
+								System.out.println ("N�o h� turmas");						
 							break;
 						case 2: //Acessar
 							if (sis.getAlunos().get(readaluno).getHistorico().getCount() > 0) {
@@ -235,11 +234,11 @@ public class Main {
 								}
 							}
 							else
-								System.out.println ("Nao há turmas matriculadas");
+								System.out.println ("Nao h� turmas matriculadas");
 							break;
 
 						case 3://Historico
-							System.out.println("Histórico: ");
+							System.out.println("Hist�rico: ");
 							Historico historico = sis.getAlunos().get(readaluno).getHistorico();
 							for (Disciplina disc: historico.getDisciplinas()) {
 								System.out.println(disc.getNome() + ": " + historico.getConceito(disc));
@@ -247,23 +246,24 @@ public class Main {
 							System.out.println ("\n");
 							break;
 
-						default://Deslogar
-							option = 4;
+						default://Deslogar							
 							System.out.println ("Saindo...\n");
+							option = 5;
 							break;
 						}
 					}
+					break;
 
 				default://Login falhou
 					System.out.println ("Saindo...\n");
+					option = 5;
 					break;
 				}
-
 				break;
 
 
 			default: //Sair do sistema
-				option = 5;	
+				option = 6;	
 				break;	
 			}
 		}
