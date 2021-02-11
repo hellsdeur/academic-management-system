@@ -4,11 +4,9 @@ Projeto Java para um sistema de gerenciamento acadêmico.
 ## 1. Introdução
 Esse projeto foi criado para avaliação em um curso de Orientação Orientada a Objetos, com foco em cobrir conceitos básicos de POO. Informações gerais sobre os autores são descritas abaixo:
 
-Thiago Costa Maia
-201511140013
+Thiago Costa Maia (Matrícula: 201511140013)
 
-Helder Mateus dos Reis Matos
-201904940036
+Helder Mateus dos Reis Matos (Matrícula: 201904940036)
 
 ## 2. Objetivo
 Desenvolver um sistema de gerenciamento acadêmico que simula as funcionalidades básicas que a maioria das universidades e faculdades usam para integrar suas atividades. Algumas das funcionalidades incluem:
