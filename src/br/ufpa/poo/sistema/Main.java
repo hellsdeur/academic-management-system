@@ -35,8 +35,9 @@ public class Main {
 				read2 = in.nextLine();
 				System.out.format ("Digite uma senha (M�nimo 6 caracteres): ");
 				read3 = in.nextLine();
-				sis.novoProfessor(read1, read2, read3);
-				System.out.println ("Usu�rio criado com sucesso! \n");
+				if (sis.novoProfessor(read1, read2, read3) != null) {
+					System.out.println ("Usu�rio criado com sucesso! \n");
+				}
 				profcount++;
 				break;
 
@@ -48,8 +49,9 @@ public class Main {
 				read2 = in.nextLine();		
 				System.out.format ("Digite uma senha (M�nimo 6 caracteres): ");
 				read3 = in.nextLine();
-				sis.novoAluno(read1, read2, read3);
-				System.out.println ("Usu�rio criado com sucesso! \n");
+				if (sis.novoAluno(read1, read2, read3) != null) {
+					System.out.println ("Usu�rio criado com sucesso! \n");
+				}
 				break;
 
 

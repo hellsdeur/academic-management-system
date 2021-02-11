@@ -22,7 +22,7 @@ public abstract class Usuario {
 			throw new StringTooShortException("Senha deve ter pelo menos 6 caracteres.");
 		}
 		for (Aluno a: alunos) {
-			if (a.getUsuario() == usuarioAluno) {
+			if (a.getUsuario().equals(usuarioAluno)) {
 				throw new ListAlreadyContainsElementException("Nome de usu�rio j� existe.");
 			}
 		}
@@ -41,7 +41,7 @@ public abstract class Usuario {
 			throw new StringTooShortException("Senha deve ter pelo menos 6 caracteres.");
 		}
 		for (Usuario u: professores) {
-			if (u.getUsuario() == usuarioProfessor) {
+			if (u.getUsuario().equals(usuarioProfessor)) {
 				throw new ListAlreadyContainsElementException("Nome de usu�rio j� existe.");
 			}
 		}
