@@ -1,18 +1,24 @@
 # Academic Management System
-Java project for a simple academic management system
+Projeto Java para um sistema de gerenciamento acadêmico.
 
-## 1. Introduction
-This project was created during a undergraduate course of Object Oriented Programming, aiming to cover most of the basics concepts of OOP.
+## 1. Introdução
+Esse projeto foi criado para avaliação em um curso de Orientação Orientada a Objetos, com foco em cobrir conceitos básicos de POO. Informações gerais sobre os autores são descritas abaixo:
 
-## 2. Objective
-Develop a academic management system that mimics the basic functionalities that most universities and colleges use to integrate their activities. Some of the funcionalities include:  
+Thiago Costa Maia
+201511140013
 
-    a. Different user hierarquies (professor, students, administration)  
-    b. Freshman students register  
-    c. Classes management  
-    d. Enrollment  
-    e. Activities management  
-    f. Grading  
+Helder Mateus dos Reis Matos
+201904940036
+
+## 2. Objetivo
+Desenvolver um sistema de gerenciamento acadêmico que simula as funcionalidades básicas que a maioria das universidades e faculdades usam para integrar suas atividades. Algumas das funcionalidades incluem:
+
+    a. Diferentes hierarquias de usuário para professor e alunos  
+    b. Registro de novos usuários  
+    c. Gerência de classes  
+    d. Matrícula  
+    e. Gerência de atividades  
+    f. Lançamento e consolidação de notas  
   
-## 3. Methodology
-The project must be developed and written in Java programming language and must use OOP concepts such as objects, classes, inheritance, encapsulation, abstraction, polymorphism, etc. A Test-Driven Development approach was used during the code implementation, which details most of the procedure required for the project.
+## 3. Metodologia
+O projeto foi desenvolvido e escrito em Java usanto conceitos de POO como objetos, classes, herança, encapsulamento, abstração, polimorfismo, etc. Uma abordagem voltada para testes foi usada durante a implementação do código, que detalha a maior parte do processo especificado pelo projeto.
